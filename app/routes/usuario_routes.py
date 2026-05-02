@@ -1,0 +1,11 @@
+from fastapi import APIRouter
+
+router = APIRouter(prefix="/usuarios", tags=["Usuarios"])
+
+@router.post("/")
+def criar_usuario():
+    return {"message": "Usuário criado"}
+
+@router.get("/perfil")
+def perfil():
+    return {"nome": "Tamile", "email": "tamile.oliveira@hotmail.com"} 
