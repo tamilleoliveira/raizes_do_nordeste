@@ -1,28 +1,21 @@
-from fastapi import APIRouter, HTTPException, status
-from app.schemas.produto_schema import ProdutoSchema
+from fastapi import APIRouter, Depends
+from sqlalchemy.orm import Session
+from app.core.database import SessionLocal
 from app.services import produto_service
-from app.utils.response import success_response
 
 router = APIRouter(prefix="/produtos", tags=["Produtos"])
 
-@router.get("/", summary="Listar produtos")
-def listar():
-    produtos = produto_service.listar_produtos()
-    return success_response(produtos, "Lista de produtos")
+def get_db():
+    db = SessionLocal()
+    try:
+        yield db
+    finally:
+        db.close()
 
-@router.get("/{produto_id}", summary="Buscar produto por ID")
-def buscar(produto_id: int):
-    produto = produto_service.buscar_produto(produto_id)
+@router.post("/")
+def criar(nome: str, preco: float, db: Session = Depends(get_db)):
+    return produto_service.criar_produto(db, nome, preco)
 
-    if not produto:
-        raise HTTPException(
-            status_code=404,
-            detail="Produto não encontrado"
-        )
-
-    return success_response(produto)
-
-@router.post("/", status_code=status.HTTP_201_CREATED)
-def criar(produto: ProdutoSchema):
-    novo = produto_service.criar_produto(produto)
-    return success_response(novo, "Produto criado com sucesso")
+@router.get("/")
+def listar(db: Session = Depends(get_db)):
+    return produto_service.listar_produtos(db)

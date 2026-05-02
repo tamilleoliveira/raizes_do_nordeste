@@ -1,16 +1,12 @@
+from sqlalchemy.orm import Session
 from app.models.produto_model import Produto
 
-produtos_db = []  # simulação
-
-def listar_produtos():
-    return produtos_db
-
-def buscar_produto(produto_id: int):
-    for p in produtos_db:
-        if p.id == produto_id:
-            return p
-    return None
-
-def criar_produto(produto):
-    produtos_db.append(produto)
+def criar_produto(db: Session, nome: str, preco: float):
+    produto = Produto(nome=nome, preco=preco)
+    db.add(produto)
+    db.commit()
+    db.refresh(produto)
     return produto
+
+def listar_produtos(db: Session):
+    return db.query(Produto).all()
