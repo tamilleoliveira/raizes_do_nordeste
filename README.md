@@ -25,7 +25,7 @@ A API foi construída considerando um cenário real de crescimento de uma franqu
 * FastAPI
 * Uvicorn
 * Pydantic
-* SQLite (ou outro banco configurado)
+* (ou outro banco configurado)
 * Git & GitHub
 
 ---
@@ -35,7 +35,7 @@ A API foi construída considerando um cenário real de crescimento de uma franqu
 ### 🔧 1. Clonar o repositório
 
 ```bash
-git clone https://github.com/SEU-USUARIO/raizes_do_nordeste.git
+git clone https://github.com/tamileoliveira/raizes_do_nordeste.git
 cd raizes_do_nordeste
 ```
 

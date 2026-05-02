@@ -1,39 +1,28 @@
-from fastapi import APIRouter, HTTPException
-from app.schemas.produto_schema import Produto
-from app.models.produto import produtos
+from fastapi import APIRouter, HTTPException, status
+from app.schemas.produto_schema import ProdutoSchema
+from app.services import produto_service
+from app.utils.response import success_response
 
-router = APIRouter()
+router = APIRouter(prefix="/produtos", tags=["Produtos"])
 
-@router.get("/produtos")
-def listar_produtos():
-    return produtos
+@router.get("/", summary="Listar produtos")
+def listar():
+    produtos = produto_service.listar_produtos()
+    return success_response(produtos, "Lista de produtos")
 
-@router.post("/produtos")
-def criar_produto(produto: Produto):
-    produto.id = len(produtos) + 1
-    produtos.append(produto)
-    return produto
+@router.get("/{produto_id}", summary="Buscar produto por ID")
+def buscar(produto_id: int):
+    produto = produto_service.buscar_produto(produto_id)
 
-@router.get("/produtos/{produto_id}")
-def buscar_produto(produto_id: int):
-    for produto in produtos:
-        if produto.id == produto_id:
-            return produto
-    raise HTTPException(status_code=404, detail="Produto não encontrado")
+    if not produto:
+        raise HTTPException(
+            status_code=404,
+            detail="Produto não encontrado"
+        )
 
-@router.put("/produtos/{produto_id}")
-def atualizar_produto(produto_id: int, novo_produto: Produto):
-    for i, produto in enumerate(produtos):
-        if produto.id == produto_id:
-            novo_produto.id = produto_id
-            produtos[i] = novo_produto
-            return novo_produto
-    raise HTTPException(status_code=404, detail="Produto não encontrado")
+    return success_response(produto)
 
-@router.delete("/produtos/{produto_id}")
-def deletar_produto(produto_id: int):
-    for produto in produtos:
-        if produto.id == produto_id:
-            produtos.remove(produto)
-            return {"mensagem": "Produto removido"}
-    raise HTTPException(status_code=404, detail="Produto não encontrado")
+@router.post("/", status_code=status.HTTP_201_CREATED)
+def criar(produto: ProdutoSchema):
+    novo = produto_service.criar_produto(produto)
+    return success_response(novo, "Produto criado com sucesso")
