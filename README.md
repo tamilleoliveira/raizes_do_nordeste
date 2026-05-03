@@ -1,215 +1,95 @@
- # 🌽 Raízes do Nordeste API
+# 🌵 Raízes do Nordeste API
 
-API desenvolvida para o sistema da rede **Raízes do Nordeste**, uma franquia de lanchonetes especializadas em culinária nordestina, com foco em escalabilidade, organização e integração entre múltiplos canais de atendimento.
-
----
-
-## 📌 Descrição
-
-Este projeto tem como objetivo fornecer uma API REST para gerenciamento de:
-
-* 📦 Produtos
-* 🧾 Pedidos
-* 🏪 Unidades
-* 👤 Clientes
-* 💳 Pagamentos (simulados)
-* 🎯 Programa de fidelidade
-
-A API foi construída considerando um cenário real de crescimento de uma franquia, com múltiplas unidades e necessidade de padronização, desempenho e rastreabilidade.
+API desenvolvida para gerenciamento de pedidos, estoque e fidelidade da rede fictícia **Raízes do Nordeste**.
 
 ---
 
-## 🚀 Tecnologias Utilizadas
+## 🚀 Tecnologias
 
-* Python 3.x
+* Python 3.10+
 * FastAPI
-* Uvicorn
-* Pydantic
-* (ou outro banco configurado)
-* Git & GitHub
+* SQLite (dev)
+* SQLAlchemy
+* JWT Authentication
 
 ---
 
-## ⚙️ Instalação e Configuração
+## ⚙️ Requisitos
 
-### 🔧 1. Clonar o repositório
+* Python instalado
+* Git
+* Virtualenv (opcional)
+
+---
+
+## 🔧 Instalação
 
 ```bash
-git clone https://github.com/tamileoliveira/raizes_do_nordeste.git
+git clone https://github.com/seu-usuario/seu-repo.git
 cd raizes_do_nordeste
-```
-
----
-
-### 🐍 2. Criar e ativar ambiente virtual
-
-```bash
 python -m venv .venv
-```
-
-#### Windows:
-
-```bash
-.venv\Scripts\activate
-```
-
-#### Linux/Mac:
-
-```bash
-source .venv/bin/activate
-```
-
----
-
-### 📦 3. Instalar dependências
-
-```bash
+.venv\Scripts\activate  # Windows
 pip install -r requirements.txt
 ```
 
 ---
 
-## 🔐 Variáveis de Ambiente
+## 🗄 Banco de Dados
 
-Crie um arquivo `.env` na raiz do projeto baseado no exemplo:
+O projeto utiliza SQLite automaticamente:
 
-### 📄 `.env.example`
-
-```env
-DATABASE_URL=sqlite:///./database.db
-SECRET_KEY=sua_chave_secreta
+```bash
+raizes.db
 ```
 
 ---
 
-## 🗄️ Banco de Dados
-
-Caso utilize SQLite, o banco será criado automaticamente ao iniciar a aplicação.
-
-Se estiver usando outro banco (PostgreSQL, MySQL), configure a variável `DATABASE_URL` corretamente.
-
----
-
-## ▶️ Executando a API
+## ▶️ Executar API
 
 ```bash
 uvicorn app.main:app --reload
 ```
 
-A API estará disponível em:
-
-```
-http://127.0.0.1:8000
-```
-
 ---
 
-## 📄 Documentação da API (Swagger)
+## 📚 Documentação (Swagger)
 
-Acesse a documentação interativa em:
+Acesse:
 
 ```
 http://127.0.0.1:8000/docs
 ```
 
-Ou alternativa:
+---
+
+## 🔐 Autenticação
+
+* Endpoint: `/auth/login`
+* Retorna token JWT
+
+Utilizar no header:
 
 ```
-http://127.0.0.1:8000/redoc
+Authorization: Bearer {token}
 ```
 
 ---
 
-## 📌 Funcionalidades Principais
+## 🔁 Fluxo implementado (MVP)
 
-### 🛒 Pedidos
-
-* Criar pedido
-* Atualizar status
-* Acompanhar andamento
-
-### 📦 Produtos
-
-* Listar produtos
-* Filtrar por unidade
-* Cadastro e atualização
-
-### 👤 Clientes
-
-* Cadastro de cliente
-* Consentimento de dados (LGPD)
-
-### 💳 Pagamentos (Simulado)
-
-* Solicitação de pagamento
-* Retorno de status:
-
-  * aprovado
-  * recusado
-
-### 🎯 Fidelidade
-
-* Acúmulo de pontos
-* Aplicação de descontos
+✔ Cadastro de produto
+✔ Controle de estoque
+✔ Autenticação JWT
 
 ---
 
-## 🔐 LGPD e Segurança
+## 🧪 Testes
 
-Este projeto considera boas práticas de proteção de dados:
-
-* Consentimento explícito do usuário
-* Minimização de dados sensíveis
-* Estrutura preparada para anonimização
-* Controle de acesso e rastreabilidade
+Utilizar coleção Postman disponível no repositório.
 
 ---
 
-## 📈 Arquitetura do Projeto
+## 📌 Observações
 
-O projeto segue uma arquitetura em camadas:
-
-```
-app/
- ├── main.py          # Inicialização da API
- ├── routes/          # Rotas (endpoints)
- ├── schemas/         # Validação de dados (Pydantic)
- ├── models/          # Modelos de dados
-```
-
-### 🔎 Padrões adotados:
-
-* API REST
-* Separação de responsabilidades
-* Código modular e escalável
-
----
-
-## 📊 Melhorias Futuras
-
-* Integração com gateway de pagamento real
-* Autenticação com JWT
-* Deploy em nuvem (Render/Railway)
-* Testes automatizados com Pytest
-* Logs e auditoria completos
-
----
-
-## 👨‍💻 Autor
-
-Desenvolvido por **Tamile de Oliveira Mendes**
-Projeto acadêmico – Curso de Análise e Desenvolvimento de Sistemas
-
----
-
-## 📎 Observações
-
-Este projeto foi desenvolvido com foco em simular um ambiente real de mercado, priorizando:
-
-* Organização
-* Clareza
-* Escalabilidade
-* Boas práticas de desenvolvimento
-
----
-
+* Banco SQLite usado para desenvolvimento
+* Estrutura preparada para PostgreSQL
