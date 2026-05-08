@@ -1,12 +1,18 @@
-from sqlalchemy.orm import Session
 from app.models.produto_model import Produto
 
-def criar_produto(db: Session, nome: str, preco: float):
-    produto = Produto(nome=nome, preco=preco)
-    db.add(produto)
-    db.commit()
-    db.refresh(produto)
-    return produto
-
-def listar_produtos(db: Session):
+def listar_produtos(db):
     return db.query(Produto).all()
+
+def criar_produto(db, produto):
+    novo_produto = Produto(
+        nome=produto.nome,
+        preco=produto.preco,
+        estoque=produto.estoque,
+        descricao=produto.descricao
+    )
+
+    db.add(novo_produto)
+    db.commit()
+    db.refresh(novo_produto)
+
+    return novo_produto

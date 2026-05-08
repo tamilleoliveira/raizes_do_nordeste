@@ -7,7 +7,7 @@ from app.routes import unidade_routes
 from app.routes import estoque_routes
 from app.routes import pagamento_routes
 from app.routes import fidelidade_routes
-from app.core.database import Base, engine
+from app.database import Base, engine
 
 Base.metadata.create_all(bind=engine)
 

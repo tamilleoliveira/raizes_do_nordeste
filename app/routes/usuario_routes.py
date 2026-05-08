@@ -1,6 +1,6 @@
 from fastapi import APIRouter
 
-router = APIRouter(prefix="/usuarios", tags=["Usuarios"])
+router = APIRouter(prefix="/clientes", tags=["Usuarios"])
 
 @router.post("/")
 def criar_usuario():
