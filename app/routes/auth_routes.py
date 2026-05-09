@@ -1,10 +1,15 @@
 from fastapi import APIRouter
+from app.schemas.auth_schema import LoginRequest
 
 router = APIRouter(prefix="/auth", tags=["Auth"])
 
 @router.post("/login")
-def login():
-    return {"token": "fake-jwt-token"}
+def login(dados: LoginRequest):
+
+    return {
+        "token": "fake-jwt-token",
+        "email": dados.email
+    }
 
 @router.post("/logout")
 def logout():

@@ -10,10 +10,21 @@ def saldo():
 def historico():
     return [{"pontos": 10, "tipo": "compra"}]
 
+from app.schemas.fidelidade_schema import FidelidadeRequest
+
+
 @router.post("/comprar")
-def comprar():
-    return {"message": "Compra realizada"}
+def comprar_pontos(dados: FidelidadeRequest):
+
+    return {
+        "msg": "Compra realizada",
+        "dados": dados
+    }
 
 @router.post("/recarga")
-def recarga():
-    return {"message": "Recarga realizada"}
+def recarga_pontos(dados: FidelidadeRequest):
+
+    return {
+        "msg": "Recarga realizada",
+        "dados": dados
+    }

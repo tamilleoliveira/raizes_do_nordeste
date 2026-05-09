@@ -1,15 +1,22 @@
 from fastapi import APIRouter
+from app.schemas.estoque_schema import EstoqueMovimentacao
 
-router = APIRouter(prefix="/estoque", tags=["Estoque"])
-
-@router.get("/")
-def consultar_estoque():
-    return {"produto": "Cuscuz", "quantidade": 50}
+router = APIRouter(
+    prefix="/estoque",
+    tags=["Estoque"]
+)
 
 @router.post("/entrada")
-def entrada():
-    return {"message": "Entrada registrada"}
+def entrada_estoque(dados: EstoqueMovimentacao):
+    return {
+        "mensagem": "Entrada registrada",
+        "dados": dados
+    }
 
 @router.post("/saida")
-def saida():
-    return {"message": "Saída registrada"}
+def saida(dados: EstoqueMovimentacao):
+
+    return {
+        "msg": "Saída realizada",
+        "dados": dados
+    }
