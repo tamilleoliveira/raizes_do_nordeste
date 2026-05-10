@@ -1,0 +1,9 @@
+$kind: http-request
+name: Listar Produtos
+url: http://127.0.0.1:8000/produtos
+method: GET
+auth:
+  type: bearer
+  credentials:
+    token: fake-jwt-token
+order: 1778430907052
