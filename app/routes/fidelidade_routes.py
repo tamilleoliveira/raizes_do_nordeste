@@ -1,30 +1,41 @@
 from fastapi import APIRouter
 
-router = APIRouter(prefix="/fidelidade", tags=["Fidelidade"])
+router = APIRouter(
+    prefix="/fidelidade",
+    tags=["Fidelidade"]
+)
 
+# SALDO DE PONTOS
 @router.get("/saldo")
 def saldo():
-    return {"pontos": 120}
-
-@router.get("/historico")
-def historico():
-    return [{"pontos": 10, "tipo": "compra"}]
-
-from app.schemas.fidelidade_schema import FidelidadeRequest
-
-
-@router.post("/comprar")
-def comprar_pontos(dados: FidelidadeRequest):
 
     return {
-        "msg": "Compra realizada",
-        "dados": dados
+        "cliente_id": 1,
+        "pontos": 120
     }
 
-@router.post("/recarga")
-def recarga_pontos(dados: FidelidadeRequest):
+
+# HISTÓRICO DE PONTOS
+@router.get("/historico")
+def historico():
+
+    return [
+        {
+            "tipo": "compra",
+            "pontos": 10
+        },
+        {
+            "tipo": "resgate",
+            "pontos": -5
+        }
+    ]
+
+
+# CONSULTA GERAL DE PONTOS
+@router.get("/pontos")
+def pontos():
 
     return {
-        "msg": "Recarga realizada",
-        "dados": dados
+        "mensagem": "Consulta de pontos realizada",
+        "saldo_atual": 120
     }

@@ -6,24 +6,23 @@ router = APIRouter(
     tags=["Pagamento"]
 )
 
-@router.post("/pagamento")
-def realizar_pagamento(pagamento: PagamentoRequest):
+# SIMULAÇÃO DE PAGAMENTO
+@router.post("/")
+def simular_pagamento(pagamento: PagamentoRequest):
+
     return {
-        "mensagem": "Pagamento realizado com sucesso",
+        "mensagem": "Pagamento processado com sucesso",
+        "status": "processando",
         "dados": pagamento
     }
 
+
+# CONFIRMAÇÃO DE PAGAMENTO
 @router.post("/confirmar")
-def confirmar_pagamento(dados: PagamentoRequest):
+def confirmar_pagamento(pagamento: PagamentoRequest):
 
     return {
+        "mensagem": "Pagamento confirmado",
         "status": "confirmado",
-        "dados": dados
-    }
-@router.post("/cancelar")
-def cancelar_pagamento(dados: PagamentoRequest):
-
-    return {
-        "status": "cancelado",
-        "dados": dados
+        "dados": pagamento
     }

@@ -1,10 +1,22 @@
 from fastapi import APIRouter
 
-router = APIRouter(prefix="/unidades", tags=["Unidades"])
-from app.schemas.unidade_schema import UnidadeCreate
+router = APIRouter(
+    prefix="/unidades",
+    tags=["Unidades"]
+)
 
-
-@router.post("/")
-def criar_unidade(unidade: UnidadeCreate):
-
-    return unidade
+# LISTAR UNIDADES
+@router.get("/")
+def listar_unidades():
+    return [
+        {
+            "id": 1,
+            "nome": "Unidade Centro",
+            "cidade": "São Paulo"
+        },
+        {
+            "id": 2,
+            "nome": "Unidade Zona Sul",
+            "cidade": "Rio de Janeiro"
+        }
+    ]
