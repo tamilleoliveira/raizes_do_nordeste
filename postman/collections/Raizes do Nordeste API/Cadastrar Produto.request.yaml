@@ -1,0 +1,18 @@
+$kind: http-request
+name: Cadastrar Produto
+url: http://127.0.0.1:8000/produtos
+method: POST
+body:
+  type: json
+  content: "{\r
+
+    \  \"nome\": \"Tapioca\",\r
+
+    \  \"preco\": 16.5,\r
+
+    \  \"estoque\": 12,\r
+
+    \  \"descricao\": \"Tapioca com queijo\"\r
+
+    }"
+order: 4334970666597052

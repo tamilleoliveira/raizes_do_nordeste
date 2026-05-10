@@ -1,0 +1,5 @@
+$kind: http-request
+name: fidelidade
+url: ""
+method: GET
+order: 4503589064289336

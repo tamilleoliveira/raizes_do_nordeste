@@ -1,4 +1,5 @@
 $kind: http-request
+name: estoque
 url: ""
 method: GET
-order: 4484104663867682
+order: 4503588483773183

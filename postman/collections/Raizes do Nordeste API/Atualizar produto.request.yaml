@@ -1,0 +1,18 @@
+$kind: http-request
+name: Atualizar produto
+url: http://127.0.0.1:8000/produtos/1
+method: PUT
+body:
+  type: json
+  content: "{\r
+
+    \  \"nome\": \"Cuscuz Premium\",\r
+
+    \  \"preco\": 25,\r
+
+    \  \"estoque\": 50,\r
+
+    \  \"descricao\": \"Versão premium do cuscuz\"\r
+
+    }"
+order: 4501217557441572
