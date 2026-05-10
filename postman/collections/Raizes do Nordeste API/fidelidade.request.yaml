@@ -1,5 +1,16 @@
 $kind: http-request
 name: fidelidade
-url: ""
-method: GET
-order: 4503589064289336
+url: http://127.0.0.1:8000/fidelidade
+method: POST
+body:
+  type: json
+  content: "{\r
+
+    \  \"cliente_id\": 1,\r
+
+    \  \"pontos\": 100,\r
+
+    \  \"status\": \"bronze\"\r
+
+    }"
+order: 10000

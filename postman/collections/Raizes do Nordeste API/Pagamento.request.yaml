@@ -1,0 +1,16 @@
+$kind: http-request
+name: Pagamento
+url: http://127.0.0.1:8000/pagamento/confirmar
+method: POST
+body:
+  type: json
+  content: "{\r
+
+    \  \"pedido_id\": 1,\r
+
+    \  \"valor\": -10,\r
+
+    \  \"metodo\": \"pix\"\r
+
+    }"
+order: 1358410963491655

@@ -2,4 +2,4 @@ $kind: http-request
 name: Excluir produto
 url: http://127.0.0.1:8000/produtos/4
 method: DELETE
-order: 4503295520719636
+order: 7000

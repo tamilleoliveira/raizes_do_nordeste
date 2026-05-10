@@ -1,5 +1,16 @@
 $kind: http-request
 name: estoque
-url: ""
-method: GET
-order: 4503588483773183
+url: http://127.0.0.1:8000/estoque`
+method: POST
+body:
+  type: json
+  content: "{\r
+
+    \  \"produto_id\": 1,\r
+
+    \  \"quantidade\": 10,\r
+
+    \  \"tipo\": \"entrada\"\r
+
+    }"
+order: 9000

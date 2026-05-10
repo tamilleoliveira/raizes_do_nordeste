@@ -1,5 +1,16 @@
 $kind: http-request
 name: Cadastro de usuario
-url: ""
-method: GET
-order: 4503481848929991
+url: http://127.0.0.1:8000/usuarios
+method: POST
+body:
+  type: json
+  content: "{\r
+
+    \  \"nome\": \"Tamile\",\r
+
+    \  \"email\": \"tamile@email.com\",\r
+
+    \  \"senha\": \"minhasenha\"\r
+
+    }"
+order: 8000
